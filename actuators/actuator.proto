@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+service Lamp {
+  rpc Toggle (Void) returns (Response) {}
+  rpc GetState (Void) returns (State) {}
+}
+
+service AirConditioner {
+  rpc ChangeTemperature (State) returns (Response) {}
+  rpc GetState (Void) returns (State) {}
+}
+
+service FireSprinkler {
+  rpc Activate (Void) returns (Response) {}
+  rpc Deactivate (Void) returns (Response) {}
+  rpc GetState (Void) returns (State) {}
+}
+
+message Void {}
+
+message Response {
+  bool success = 1;
+}
+
+message State {
+  int32 value = 1;
+}
