@@ -1,7 +1,7 @@
 # HomeAssistant
 
 - Ruby 3.0.0
-- [Bunny (RabbitMQ)]([https://github.com/ruby-amqp/bunny])
+- [Bunny - RabbitMQ](https://github.com/ruby-amqp/bunny)
 - [gRPC](https://rubygems.org/gems/grpc)
 - [gRPC-tools](https://rubygems.org/gems/grpc-tools)
 - [rack](https://github.com/rack/rack)
