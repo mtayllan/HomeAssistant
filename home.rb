@@ -39,10 +39,22 @@ class Home
 
       sensor[:queue].subscribe do |_, _, body|
         sensor[:state] = body
+        sensor[:last_update] = Time.now
       end
     end
 
-    loop { sleep 5 }
+    loop do
+      @sensors.each do |sensor|
+        next if sensor[:last_update].nil?
+
+        last_update_diff = Time.now - sensor[:last_update]
+        if last_update_diff > 3
+          sensor[:state] = nil
+        end
+      end
+
+      sleep 5
+    end
   end
 
   def start_actuators_comms
@@ -77,7 +89,7 @@ class Home
             actuator[:state] = state.value == 1
           end
         rescue GRPC::Unavailable
-          next
+          actuator[:state] = nil
         end
       end
 
